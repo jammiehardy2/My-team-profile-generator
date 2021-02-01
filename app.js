@@ -1,6 +1,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const Employee = require("./lib/Employee");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -12,6 +13,91 @@ const render = require("./lib/htmlRenderer");
 
 
 // Write code to use inquirer to gather information about the development team members,
+const teamMember=[];
+function app{}{
+    function getManager{}{
+        inquirer.prompt([
+  {
+        type:"input",
+        name:"managerName",
+        message:"What is your name"
+  },
+{
+        type:"input",
+        name:"managerId",
+        message:"What is your Id"
+},
+{
+    type:"input",
+    name:"managerEmail",
+    message:"What is your work Email"
+},
+{
+    type:"input",
+    name:"officeNumber",
+    message:"What is your number"
+}
+    }).then(response => {
+        const manager = new Manager(response.managerName,response.managerId,response.managerEmail,response.officeNumber);
+        teamMember.push(manager);
+        addingNewMember(); 
+    })
+    function getEngineer{}{
+        inquirer.prompt([
+  {
+        type:"input",
+        name:"engineerName",
+        message:"What is your name"
+  },
+{
+        type:"input",
+        name:"engineerId",
+        message:"What is your Id"
+},
+{
+    type:"input",
+    name:"engineerEmail",
+    message:"What is your work Email"
+},
+{
+    type:"input",
+    name:"github",
+    message:"What is your Github name"
+}
+    }).then(response => {
+        const engineer = new Engineer(response.engineerName,response.engineerId,response.engineerEmail,response.github);
+        teamMember.push(engineer);
+        addingNewMember(); 
+    })
+    function getIntern{}{
+        inquirer.prompt([
+  {
+        type:"input",
+        name:"internName",
+        message:"What is your name"
+  },
+{
+        type:"input",
+        name:"internId",
+        message:"What is your Id"
+},
+{
+    type:"input",
+    name:"internEmail",
+    message:"What is your work Email"
+},
+{
+    type:"input",
+    name:"school",
+    message:"What school did you attend"
+}
+    }).then(response => {
+        const intern = new Intern(response.internName,response.internId,response.internEmail,response.school);
+        teamMember.push(intern);
+        addingNewMember(); 
+    })      
+        ])
+}
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
