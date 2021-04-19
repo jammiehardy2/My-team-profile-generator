@@ -10,8 +10,29 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const team = [];
+function addMember() {
+  inquirer
+      .prompt([
+          {
+              type: 'checkbox',
+              name: 'employeeType',
+              message: 'what is your job title?',
+              choices: ["manager", "engineer", "intern"]
+          },
+      ])
+      .then((data) => {
+          const title = data.employeeType.toString();
 
-
+          if (title === "manager") {
+              getManager();
+          } else if (title === "engineer") {
+              getEngineer();
+          } else if (title === "intern") {
+              getIntern();
+          }
+      })
+}
 // Write code to use inquirer to gather information about the development team members,
 const teamMember=[
     promptUser();
@@ -140,7 +161,10 @@ function promptUser() {
         fs.writeFileSync(path.join(process.cwd(), file), data);
         console.log("Success!");
       }
-      
+      function renderHtml() {
+        fs.writeFileSync(outputPath, render(team), "utf-8");
+    };
+addMember();  
       function createMD(data) {
         // return
         //Adding licences and their function?
@@ -167,5 +191,3 @@ function promptUser() {
       ## license
       ${data.license}`;
       }
-        
-
